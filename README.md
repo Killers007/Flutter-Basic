@@ -9,26 +9,26 @@ Materi 1
 * Mengenal Struktur Folder
 * Mengenal Dependencies
 
-
 Materi 2
 
+* Mengenal Variabel List & Map
 * Mengenal Stateless Widget
 * Mengenal Statefull Widget
 * Mengenal Widget Dasar
   * Container
   * Row
   * Columns
-
+  * Flexible
 
 Materi 3
 
 * Mengenal Navigasi routing halaman
+* Mengenal Entities
 * Mengenal State Management
   * Provider
   * BLoC
   * GetX
   * Riverpod
-
 
 Materi 4
 
@@ -36,14 +36,11 @@ Materi 4
   * Shared Preferences
 * Membuat login sederhana
 
-
-
 Materi 5
 
 * Membuat Konstanta
 * Membuat Entities
 * Mengkonsumsi API
-
 
 Materi 6
 

@@ -1,24 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_basic/materi/statefull.dart';
-import 'package:flutter_basic/materi/stateless.dart';
+import 'package:flutter_basic/materi/routing%20&%20state%20management/home_app.dart';
+import 'package:flutter_basic/materi/stateless%20&%20statefull/stateless.dart';
 
 void main() {
-  runApp(const Materi());
-}
-
-class Materi extends StatelessWidget {
-  const Materi({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Materi',
-      theme: ThemeData(
-        colorScheme:
-            ColorScheme.fromSeed(seedColor: Colors.blueAccent.shade400),
-        useMaterial3: true,
-      ),
-      home: const Statefull(),
-    );
-  }
+  runApp(const HomeApp());
 }
