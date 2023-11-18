@@ -4,7 +4,6 @@
 
 Materi 1
 
-* Instalasi Flutter
 * Membuat Project Baru
 * Mengenal Struktur Folder
 * Mengenal Dependencies
@@ -33,16 +32,11 @@ Materi 3
 Materi 4
 
 * Mengenal local storage
+
   * Shared Preferences
 * Membuat login sederhana
+* Mengkonsumsi API
 
 Materi 5
 
-* Membuat Konstanta
-* Membuat Entities
-* Mengkonsumsi API
-
-Materi 6
-
 * Integrasi Firebase notification
-* Membuat realtime CRUD

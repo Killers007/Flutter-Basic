@@ -38,10 +38,16 @@ dependencies:
 
   # UTLIS
   intl: ^0.17.0
+  shared_preferences: ^2.0.12
+  http: ^1.1.0
+
+  # Firebase
+  firebase_core: ^2.4.0
+  firebase_messaging: ^14.2.0
 
   # STATE MANAGEMENT
   provider: ^6.1.1
-
+    
 dev_dependencies:
   flutter_test:
     sdk: flutter
