@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../routes/routes.dart';
 import 'model/cart_model.dart';
-import 'page/page.dart';
+import 'pages/page.dart';
+import 'routes/routes.dart';
 
 class HomeApp extends StatelessWidget {
   const HomeApp({super.key});

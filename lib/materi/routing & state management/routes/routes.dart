@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_basic/materi/routing%20&%20state%20management/entities/product_entities.dart';
 
-import '../page/page.dart';
+import '../pages/page.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
