@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_basic/materi/local%20storage%20&%20consume%20api/entities/github_user_entity.dart';
 import 'package:flutter_basic/materi/local%20storage%20&%20consume%20api/entities/user_entitiy.dart';
 import 'package:flutter_basic/materi/local%20storage%20&%20consume%20api/utils/format_number.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 import '../repository/github_api.dart';
 import '../widget/github_user_card.dart';
@@ -55,74 +56,88 @@ class _UserDetailState extends State<UserDetail> with TickerProviderStateMixin {
                 final user = snapshot.data;
                 return Container(
                   padding: const EdgeInsets.all(10),
-                  child: Row(
+                  child: Column(
                     children: [
-                      Flexible(
-                        flex: 2,
-                        child: GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    MyImagePreview(imageUrl: user.avatarUrl),
-                              ),
-                            );
-                          },
-                          child: Hero(
-                            tag: user!.avatarUrl,
-                            child: Container(
-                              width: 100.0,
-                              height: 100.0,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                image: DecorationImage(
-                                  fit: BoxFit.cover,
-                                  image: NetworkImage(user.avatarUrl),
+                      Row(
+                        children: [
+                          Flexible(
+                            flex: 2,
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => MyImagePreview(
+                                        imageUrl: user.avatarUrl),
+                                  ),
+                                );
+                              },
+                              child: Hero(
+                                tag: user!.avatarUrl,
+                                child: Container(
+                                  width: 100.0,
+                                  height: 100.0,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    image: DecorationImage(
+                                      fit: BoxFit.cover,
+                                      image: NetworkImage(user.avatarUrl),
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                      ),
-                      const SizedBox(width: 20),
-                      Flexible(
-                        flex: 5,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              user.name ?? '-',
-                              style: const TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 18),
-                            ),
-                            Text(user.email ?? '-'),
-                            Text(user.htmlUrl),
-                            const SizedBox(height: 6),
-                            Flex(
-                              clipBehavior: Clip.antiAlias,
-                              direction: Axis.horizontal,
+                          const SizedBox(width: 20),
+                          Flexible(
+                            flex: 5,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const Icon(Icons.supervised_user_circle,
-                                    color: Colors.grey),
                                 Text(
-                                  formatNumber(user.followers),
-                                  style: const TextStyle(color: Colors.grey),
-                                  overflow: TextOverflow.clip,
+                                  user.name ?? '-',
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18),
                                 ),
-                                const SizedBox(width: 10),
-                                const Icon(
-                                    Icons.supervised_user_circle_outlined,
-                                    color: Colors.grey),
-                                Text(
-                                  '${formatNumber(user.following)} ',
-                                  style: const TextStyle(color: Colors.grey),
-                                  overflow: TextOverflow.ellipsis,
+                                Text(user.email ?? '-'),
+                                GestureDetector(
+                                  onTap: () {
+                                    launchUrlString(user.htmlUrl);
+                                  },
+                                  child: Text(
+                                    user.htmlUrl,
+                                    style: const TextStyle(color: Colors.blue),
+                                  ),
+                                ),
+                                const SizedBox(height: 6),
+                                Flex(
+                                  clipBehavior: Clip.antiAlias,
+                                  direction: Axis.horizontal,
+                                  children: [
+                                    badgeUser(Icons.supervised_user_circle,
+                                        user.followers),
+                                    const SizedBox(width: 10),
+                                    badgeUser(
+                                        Icons.supervised_user_circle_outlined,
+                                        user.following),
+                                    const SizedBox(width: 10),
+                                    badgeUser(Icons.balance_outlined,
+                                        user.publicRepos),
+                                    const SizedBox(width: 10),
+                                    badgeUser(Icons.workspaces_sharp,
+                                        user.publicGists),
+                                  ],
                                 ),
                               ],
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 10),
+                      Text(
+                        user.bio ?? '-',
+                        style: const TextStyle(fontStyle: FontStyle.italic),
                       ),
                     ],
                   ),
@@ -167,6 +182,20 @@ class _UserDetailState extends State<UserDetail> with TickerProviderStateMixin {
           ),
         ],
       ),
+    );
+  }
+
+  Widget badgeUser(IconData icon, int numbers) {
+    return Row(
+      children: [
+        Icon(icon, size: 16, color: Colors.grey),
+        const SizedBox(width: 5),
+        Text(
+          formatNumber(numbers),
+          style: const TextStyle(color: Colors.grey),
+          overflow: TextOverflow.clip,
+        ),
+      ],
     );
   }
 

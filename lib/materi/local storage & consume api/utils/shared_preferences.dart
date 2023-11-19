@@ -1,6 +1,9 @@
+import 'dart:convert';
+
+import 'package:flutter_basic/materi/local%20storage%20&%20consume%20api/entities/user_entitiy.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class LocalStorageUtils {
+class SharedPreferencesUtils {
   static late SharedPreferences _preferences;
 
   // Initialize SharedPreferences
@@ -49,9 +52,50 @@ class LocalStorageUtils {
 
   static void logout() {
     _preferences.remove('isAuthenticated');
+    _preferences.remove('bookmark');
   }
 
   static bool isAuthenticated() {
     return _preferences.getBool('isAuthenticated') ?? false;
+  }
+
+  static bool isBookmark(String uid) {
+    String bookmark = _preferences.getString('bookmark') ?? '';
+
+    if (bookmark.isEmpty) {
+      return false;
+    }
+
+    List data = json.decode(bookmark);
+    Map<String, dynamic>? foundMap = data.firstWhere(
+      (map) => map['login'] == uid,
+      orElse: () => null,
+    );
+
+    return foundMap != null;
+  }
+
+  static void bookmark(UserEntity user) {
+    String bookmark = _preferences.getString('bookmark') ?? '';
+    List<Map<dynamic, dynamic>> data = bookmark.isNotEmpty
+        ? (jsonDecode(bookmark) as List).cast<Map<String, dynamic>>()
+        : [];
+
+    if (!isBookmark(user.login)) {
+      data.add(user.toMap());
+    } else {
+      data.removeWhere((map) => map['login'] == user.login);
+    }
+    _preferences.setString('bookmark', json.encode(data));
+  }
+
+  static Future<List<UserEntity>> getBookmark() async {
+    String bookmark = _preferences.getString('bookmark') ?? '';
+    List<Map<dynamic, dynamic>> body = bookmark.isNotEmpty
+        ? (jsonDecode(bookmark) as List).cast<Map<String, dynamic>>()
+        : [];
+
+    final List<dynamic> data = body;
+    return data.map((user) => UserEntity.fromJson(user)).toList();
   }
 }

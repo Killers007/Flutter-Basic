@@ -61,4 +61,27 @@ class UserEntity {
       siteAdmin: json['site_admin'],
     );
   }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'login': login,
+      'id': id,
+      'node_id': nodeId,
+      'avatar_url': avatarUrl,
+      'gravatar_id': gravatarId,
+      'url': url,
+      'html_url': htmlUrl,
+      'followers_url': followersUrl,
+      'following_url': followingUrl,
+      'gists_url': gistsUrl,
+      'starred_url': starredUrl,
+      'subscriptions_url': subscriptionsUrl,
+      'organizations_url': organizationsUrl,
+      'repos_url': reposUrl,
+      'events_url': eventsUrl,
+      'received_events_url': receivedEventsUrl,
+      'type': type,
+      'site_admin': siteAdmin,
+    };
+  }
 }

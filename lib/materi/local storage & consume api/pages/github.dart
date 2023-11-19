@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_basic/materi/local%20storage%20&%20consume%20api/entities/user_entitiy.dart';
-import 'package:flutter_basic/materi/local%20storage%20&%20consume%20api/pages/auth.dart';
-import 'package:flutter_basic/materi/local%20storage%20&%20consume%20api/repository/github_api.dart';
-import 'package:flutter_basic/materi/local%20storage%20&%20consume%20api/utils/localstorage.dart';
-import 'package:flutter_basic/materi/local%20storage%20&%20consume%20api/widget/github_user_card.dart';
+import 'package:flutter_basic/materi/local%20storage%20&%20consume%20api/pages/bookmark.dart';
+import 'package:flutter_basic/materi/local%20storage%20&%20consume%20api/utils/shared_preferences.dart';
+import '../entities/user_entitiy.dart';
+import '../pages/auth.dart';
+import '../repository/github_api.dart';
+import '../widget/github_user_card.dart';
 
 class Github extends StatefulWidget {
   const Github({super.key});
@@ -24,7 +25,19 @@ class _GithubState extends State<Github> {
         actions: [
           GestureDetector(
             onTap: () {
-              LocalStorageUtils.logout();
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const Bookmark()),
+              );
+            },
+            child: const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Icon(Icons.bookmark),
+            ),
+          ),
+          GestureDetector(
+            onTap: () {
+              SharedPreferencesUtils.logout();
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(builder: (context) => const Auth()),

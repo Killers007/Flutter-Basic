@@ -2,14 +2,14 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_basic/materi/local%20storage%20&%20consume%20api/pages/github.dart';
-import '../utils/localstorage.dart';
+import '../utils/shared_preferences.dart';
 
 class Auth extends StatelessWidget {
   const Auth({super.key});
 
   @override
   Widget build(BuildContext context) {
-    if (LocalStorageUtils.isAuthenticated()) {
+    if (SharedPreferencesUtils.isAuthenticated()) {
       return Github();
     }
 
@@ -23,14 +23,15 @@ class Auth extends StatelessWidget {
           children: [
             ElevatedButton(
               onPressed: () {
-                LocalStorageUtils.setAuthenticated(true);
+                SharedPreferencesUtils.setAuthenticated(true);
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(builder: (context) => Github()),
                 );
               },
-              child: Text(
-                  !LocalStorageUtils.isAuthenticated() ? 'Login' : 'Continue'),
+              child: Text(!SharedPreferencesUtils.isAuthenticated()
+                  ? 'Login'
+                  : 'Continue'),
             ),
           ],
         ),
