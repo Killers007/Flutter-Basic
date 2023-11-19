@@ -3,13 +3,11 @@
 ## Materi
 
 Materi 1
-
 * Membuat Project Baru
 * Mengenal Struktur Folder
 * Mengenal Dependencies
 
 Materi 2
-
 * Mengenal Variabel List & Map
 * Mengenal Stateless Widget
 * Mengenal Statefull Widget
@@ -20,7 +18,6 @@ Materi 2
   * Flexible
 
 Materi 3
-
 * Mengenal Navigasi routing halaman
 * Mengenal Entities
 * Mengenal State Management
@@ -30,13 +27,9 @@ Materi 3
   * Riverpod
 
 Materi 4
-
 * Mengenal local storage
-
-  * Shared Preferences
 * Membuat login sederhana
 * Mengkonsumsi API
 
 Materi 5
-
 * Integrasi Firebase notification

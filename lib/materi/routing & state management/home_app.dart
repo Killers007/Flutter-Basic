@@ -20,7 +20,7 @@ class HomeApp extends StatelessWidget {
             useMaterial3: true,
             primaryColor: Colors.greenAccent.shade700,
           ),
-          onGenerateRoute: generateRoute),
+          onGenerateRoute: Routes.generateRoute),
     );
   }
 }

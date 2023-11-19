@@ -3,29 +3,34 @@ import 'package:flutter_basic/materi/routing%20&%20state%20management/entities/p
 
 import '../pages/page.dart';
 
-Route<dynamic> generateRoute(RouteSettings settings) {
-  switch (settings.name) {
-    case '/product_detail':
-      final args = settings.arguments as ProductEntities;
+class Routes {
+  // ignore: constant_identifier_names
+  static const PRODUCT_DETAIL = '/product_detail';
 
-      return MaterialPageRoute(
-        builder: (context) {
-          return ProductDetailPage(
-            product: args,
-          );
-        },
-      );
+  static Route<dynamic> generateRoute(RouteSettings settings) {
+    switch (settings.name) {
+      case PRODUCT_DETAIL:
+        final args = settings.arguments as ProductEntities;
 
-    default:
-      return MaterialPageRoute(
-        builder: (context) {
-          return Scaffold(
-            appBar: AppBar(
-              title: const Text('Route not found'),
-            ),
-            body: const Center(child: Text('No Routes')),
-          );
-        },
-      );
+        return MaterialPageRoute(
+          builder: (context) {
+            return ProductDetailPage(
+              product: args,
+            );
+          },
+        );
+
+      default:
+        return MaterialPageRoute(
+          builder: (context) {
+            return Scaffold(
+              appBar: AppBar(
+                title: const Text('Route not found'),
+              ),
+              body: const Center(child: Text('No Routes')),
+            );
+          },
+        );
+    }
   }
 }

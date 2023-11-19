@@ -3,6 +3,7 @@ import 'package:flutter_basic/materi/routing%20&%20state%20management/entities/p
 import 'package:provider/provider.dart';
 
 import '../model/cart_model.dart';
+import '../routes/routes.dart';
 
 // ignore: must_be_immutable
 class ProductCard extends StatefulWidget {
@@ -29,7 +30,7 @@ class _ProductCardState extends State<ProductCard> {
 
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, '/product_detail',
+        Navigator.pushNamed(context, Routes.PRODUCT_DETAIL,
             arguments: widget.product);
         // Navigator.push(
         //   context,

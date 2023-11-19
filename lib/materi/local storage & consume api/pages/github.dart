@@ -75,7 +75,7 @@ class _GithubState extends State<Github> {
           ),
           Expanded(
             child: FutureBuilder<List<UserEntity>>(
-              future: GithubApi.fetchUsers(
+              future: GithubApi().fetchUsers(
                   user: _searchController.text.isEmpty
                       ? 'Hanzo'
                       : _searchController.text),
