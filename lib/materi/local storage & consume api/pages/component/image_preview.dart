@@ -15,7 +15,7 @@ class MyImagePreview extends StatelessWidget {
         },
         child: Center(
           child: Hero(
-            tag: 'imageHero',
+            tag: imageUrl,
             child: Image.network(imageUrl),
           ),
         ),

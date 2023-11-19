@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
         useMaterial3: true,
+        // brightness: Brightness.dark,
         primaryColor: Colors.greenAccent.shade700,
       ),
       home: const Auth(),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_basic/materi/local%20storage%20&%20consume%20api/pages/user_detail.dart';
 import '../entities/user_entitiy.dart';
+import '../pages/component/image_preview.dart';
 
 class GithubUserCard extends StatelessWidget {
   final UserEntity user;
@@ -32,11 +33,29 @@ class GithubUserCard extends StatelessWidget {
           children: [
             Flexible(
               flex: 1,
-              child: CircleAvatar(
-                radius: 80, // Adjust the size as needed
-                backgroundColor: Colors.transparent,
-                backgroundImage: NetworkImage(
-                  user.avatarUrl,
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          MyImagePreview(imageUrl: user.avatarUrl),
+                    ),
+                  );
+                },
+                child: Hero(
+                  tag: user.avatarUrl,
+                  child: Container(
+                    width: 100.0,
+                    height: 100.0,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: NetworkImage(user.avatarUrl),
+                      ),
+                    ),
+                  ),
                 ),
               ),
             ),

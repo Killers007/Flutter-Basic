@@ -8,9 +8,9 @@ import 'package:http/http.dart' as http;
 class GithubApi {
   final String endpoint = 'https://api.github.com';
 
-  // 7 Days expired from 2023/11/19 08:30
+  // Expires on Sun, Nov 26 2023.
   // Authenticated requests get a higher rate limit.
-  final String myPersonalToken = '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';
+  final String myPersonalToken = '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';
 
   // Add the myPersonalToken to the headers
   late Map<String, String> headers = {
@@ -31,20 +31,17 @@ class GithubApi {
   }
 
   Future<GitHubUserEntity> fetchUserDetail(String username) async {
-    // throw ArgumentError('LIMIT USER REQUEST');
     final response = await http.get(Uri.parse('$endpoint/users/$username'),
         headers: headers);
 
     if (response.statusCode == 200) {
       return GitHubUserEntity.fromJson(json.decode(response.body));
     } else {
-      throw Exception('Failed to load user repositories');
+      throw Exception(response.body);
     }
   }
 
   Future<List<UserEntity>> fetchFollowers(String username) async {
-    // throw ArgumentError('LIMIT USER REQUEST');
-
     final response = await http.get(
         Uri.parse('$endpoint/users/$username/followers'),
         headers: headers);
@@ -53,13 +50,11 @@ class GithubApi {
       final List<dynamic> data = json.decode(response.body);
       return data.map((user) => UserEntity.fromJson(user)).toList();
     } else {
-      throw Exception('Failed to load user repositories');
+      throw Exception(response.body);
     }
   }
 
   Future<List<UserEntity>> fetchFollowing(String username) async {
-    // throw ArgumentError('LIMIT USER REQUEST');
-
     final response = await http.get(
         Uri.parse('$endpoint/users/$username/following'),
         headers: headers);
@@ -68,7 +63,7 @@ class GithubApi {
       final List<dynamic> data = json.decode(response.body);
       return data.map((user) => UserEntity.fromJson(user)).toList();
     } else {
-      throw Exception('Failed to load user repositories');
+      throw Exception(response.body);
     }
   }
 }

@@ -70,7 +70,7 @@ class _UserDetailState extends State<UserDetail> with TickerProviderStateMixin {
                             );
                           },
                           child: Hero(
-                            tag: 'imageHero',
+                            tag: user!.avatarUrl,
                             child: Container(
                               width: 100.0,
                               height: 100.0,
@@ -78,7 +78,7 @@ class _UserDetailState extends State<UserDetail> with TickerProviderStateMixin {
                                 shape: BoxShape.circle,
                                 image: DecorationImage(
                                   fit: BoxFit.cover,
-                                  image: NetworkImage(user!.avatarUrl),
+                                  image: NetworkImage(user.avatarUrl),
                                 ),
                               ),
                             ),
